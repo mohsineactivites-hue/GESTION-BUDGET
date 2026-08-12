@@ -270,7 +270,10 @@
       alert('Compte créé avec succès !');
       ouvrirApplication(user);
     })
-    .catch((error) => {
+    .catch(error => {
+    console.error("Erreur de création du compte :", error.message);
+    alert("Erreur lors de la création du compte : " + error.message);
+});
       alert('Erreur lors de la création du compte : ' + error.message);
     });
 }
