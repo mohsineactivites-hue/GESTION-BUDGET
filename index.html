@@ -257,23 +257,24 @@
   }
 
   function sinscrire() {
-  const user = document.getElementById('signup-user').value.trim().toLowerCase();
-  const pass = document.getElementById('signup-pass').value;
+    const user = document.getElementById('signup-user').value.trim().toLowerCase();
+    const pass = document.getElementById('signup-pass').value;
 
-  if (!user || !pass) {
-    alert('Veuillez remplir tous les champs.');
-    return;
-  }
+    if (!user || !pass) {
+        alert('Veuillez remplir tous les champs.');
+        return;
+    }
 
-  firebase.auth().createUserWithEmailAndPassword(user, pass)
+    firebase.auth().createUserWithEmailAndPassword(user, pass)
     .then((userCredential) => {
-      alert('Compte créé avec succès !');
-      ouvrirApplication(user);
+        alert('Compte créé avec succès !');
+        ouvrirApplication(user);
     })
     .catch(error => {
-    console.error("Erreur de création du compte :", error.message);
-    alert("Erreur lors de la création du compte : " + error.message);
-});
+        console.error("Erreur de création du compte :", error.message);
+        alert("Erreur lors de la création du compte : " + error.message);
+    });
+  }
       alert('Erreur lors de la création du compte : ' + error.message);
     });
 }
