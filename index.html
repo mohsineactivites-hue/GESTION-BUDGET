@@ -269,12 +269,22 @@
   }
 
   function seConnecter() {
-    const user = document.getElementById('login-user').value.trim().toLowerCase();
-    const pass = document.getElementById('login-pass').value;
-    if (!user || !pass) { alert('Veuillez remplir tous les champs.'); return; }
-    const db = chargerBaseDeDonnees();
-    if (!db[user] || db[user].password !== pass) { alert('Identifiant ou mot de passe incorrect.'); return; }
-    ouvrirApplication(user);
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value;
+
+  if (!user || !pass) {
+    alert('Veuillez remplir tous les champs.');
+    return;
+  }
+
+  firebase.auth().signInWithEmailAndPassword(user, pass)
+    .then((userCredential) => {
+      ouvrirApplication(user);
+    })
+    .catch((error) => {
+      alert('Identifiant ou mot de passe incorrect.');
+      console.error("Erreur Firebase :", error.message);
+    });
   }
 
   function ouvrirApplication(username) {
