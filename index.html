@@ -231,12 +231,12 @@
     const registerForm = document.getElementById('register-form');
     
     if (loginForm && registerForm) {
-        if (loginForm.style.display === 'none') {
-            loginForm.style.display = 'block';
-            registerForm.style.display = 'none';
-        } else {
+        if (getComputedStyle(loginForm).display !== 'none') {
             loginForm.style.display = 'none';
             registerForm.style.display = 'block';
+        } else {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
         }
     }
   }
