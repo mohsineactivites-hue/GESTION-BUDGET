@@ -256,17 +256,25 @@
     localStorage.setItem('budget_users_db', JSON.stringify(db));
   }
 
-  function sInscrire() {
-    const user = document.getElementById('signup-user').value.trim().toLowerCase();
-    const pass = document.getElementById('signup-pass').value;
-    if (!user || !pass) { alert('Veuillez remplir tous les champs.'); return; }
-    const db = chargerBaseDeDonnees();
-    if (db[user]) { alert('Ce compte existe déjà.'); return; }
-    db[user] = { password: pass, data: { revenus: [], depenses: [], epargne: [] } };
-    sauvegarderBaseDeDonnees(db);
-    alert('Compte créé avec succès !');
-    ouvrirApplication(user);
+  function sinscrire() {
+  const user = document.getElementById('signup-user').value.trim().toLowerCase();
+  const pass = document.getElementById('signup-pass').value;
+
+  if (!user || !pass) {
+    alert('Veuillez remplir tous les champs.');
+    return;
   }
+
+  firebase.auth().createUserWithEmailAndPassword(user, pass)
+    .then((userCredential) => {
+      alert('Compte créé avec succès !');
+      ouvrirApplication(user);
+    })
+    .catch((error) => {
+      alert('Erreur lors de la création du compte : ' + error.message);
+    });
+}
+
 
   function seConnecter() {
   const user = document.getElementById('login-user').value.trim();
