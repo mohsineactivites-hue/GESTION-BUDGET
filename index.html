@@ -257,26 +257,36 @@
   }
 
   function sInscrire() {
-    const user = document.getElementById('signup-user').value.trim().toLowerCase();
-    const pass = document.getElementById('signup-pass').value;
-    if (!user || !pass) { alert('Veuillez remplir tous les champs.'); return; }
-    const db = chargerBaseDeDonnees();
-    if (db[user]) { alert('Ce compte existe déjà.'); return; }
-    db[user] = { password: pass, data: { revenus: [], depenses: [], epargne: [] } };
-    sauvegarderBaseDeDonnees(db);
-    alert('Compte créé avec succès !');
-    ouvrirApplication(user);
+  const user = document.getElementById('signup-user').value.trim().toLowerCase();
+  const pass = document.getElementById('signup-pass').value;
+  if (!user || !pass) { alert('Veuillez remplir tous les champs.'); return; }
+  
+  firebase.auth().createUserWithEmailAndPassword(user, pass)
+    .then((userCredential) => {
+      const db = chargerBaseDeDonnees();
+      db[user] = { password: pass, data: { revenus: [], depenses: [], epargne: [] } };
+      sauvegarderBaseDeDonnees(db);
+      alert('Compte créé avec succès !');
+      ouvrirApplication(user);
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
   }
 
   function seConnecter() {
-    const user = document.getElementById('login-user').value.trim().toLowerCase();
-    const pass = document.getElementById('login-pass').value;
-    if (!user || !pass) { alert('Veuillez remplir tous les champs.'); return; }
-    const db = chargerBaseDeDonnees();
-    if (!db[user] || db[user].password !== pass) { alert('Identifiant ou mot de passe incorrect.'); return; }
-    ouvrirApplication(user);
-  }
+  const user = document.getElementById('login-user').value.trim().toLowerCase();
+  const pass = document.getElementById('login-pass').value;
+  if (!user || !pass) { alert('Veuillez remplir tous les champs.'); return; }
 
+  firebase.auth().signInWithEmailAndPassword(user, pass)
+    .then((userCredential) => {
+      ouvrirApplication(user);
+    })
+    .catch((error) => {
+      alert('Identifiant ou mot de passe incorrect.');
+    });
+  }
   function ouvrirApplication(username) {
     currentUser = username;
     const db = chargerBaseDeDonnees();
