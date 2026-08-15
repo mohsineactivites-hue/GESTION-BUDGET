@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Gestion de Budget</title>
   <style>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyCCeadsLkmUnLvt7TeE8RP7Tbls163HMeg",
@@ -18,7 +18,9 @@
   };
 
   firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 </script>
+    
     :root {
       --primary: #007bff;
       --primary-hover: #0056b3;
