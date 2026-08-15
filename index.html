@@ -227,15 +227,15 @@
   let userData = { revenus: [], depenses: [], epargne: [] };
 
   function toggleForm() {
-    const login = document.getElementById('login-form');
-    const register = document.getElementById('register-form');
-    if (login.style.display === 'none') {
-      login.style.display = 'block';
-      register.style.display = 'none';
-    } else {
-      login.style.display = 'none';
-      register.style.display = 'block';
-    }
+  const login = document.getElementById('login-form');
+  const register = document.getElementById('register-form');
+  if (login.style.display === 'none') {
+    login.style.display = 'block';
+    register.style.display = 'none';
+  } else {
+    login.style.display = 'none';
+    register.style.display = 'block';
+  }
   }
 
   function changerOnglet(nomOnglet, btnElement) {
