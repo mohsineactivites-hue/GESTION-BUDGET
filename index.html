@@ -300,15 +300,18 @@
     document.getElementById('login-user').value = '';
     document.getElementById('login-pass').value = '';
   }
-
-  function sauvegarderDonneesUtilisateur() {
-    if (!currentUser) return;
-    const db = chargerBaseDeDonnees();
-    if (db[currentUser]) {
-      db[currentUser].data = userData;
-      sauvegarderBaseDeDonnees(db);
-    }
-  }
+function sauvegarderDonneesUtilisateur() {
+  if (!currentUser) return;
+  db.collection('users').doc(currentUser).set({
+    data: userData
+  })
+  .then(() => {
+    console.log("Document successfully written!");
+  })
+  .catch((error) => {
+    console.error("Error writing document: ", error);
+  });
+}
 
   function initialiserDatesDuJour() {
     const aujourdHui = new Date().toISOString().split('T')[0];
