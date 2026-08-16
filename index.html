@@ -648,8 +648,6 @@ function seConnecter() {
     if (!userData.depenses) userData.depenses = [];
     if (!userData.epargne) userData.epargne = [];
 
-    document.getElementById('user-welcome-text').innerText = translations[currentLang].welcome + currentUser;
-
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('revDate').value = today;
     document.getElementById('depDate').value = today;
