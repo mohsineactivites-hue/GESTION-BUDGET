@@ -669,6 +669,14 @@ function seConnecter() {
     if (!desc || isNaN(montant) || montant <= 0 || !date) { alert(currentLang === 'ar' ? 'المرجو إدخال معلومات صحيحة' : 'Veuillez remplir les champs correctement.'); return; }
 
     userData.revenus.push({ id: Date.now(), type, desc, montant, date });
+    db.collection("transaction").add({
+    id: Date.now(),
+    type: type,
+    desc: desc,
+    montant: montant,
+    date: date
+});
+    
     document.getElementById('revDesc').value = '';
     document.getElementById('revMontant').value = '';
     sauvegarderEtRafraichir();
@@ -681,6 +689,14 @@ function seConnecter() {
     if (!desc || isNaN(montant) || montant <= 0 || !date) { alert(currentLang === 'ar' ? 'المرجو إدخال معلومات صحيحة' : 'Veuillez remplir les champs correctement.'); return; }
 
     userData.depenses.push({ id: Date.now(), desc, montant, date });
+    db.collection("transaction").add({
+    id: Date.now(),
+    type: type,
+    desc: desc,
+    montant: montant,
+    date: date
+});
+    
     document.getElementById('depDesc').value = '';
     document.getElementById('depMontant').value = '';
     sauvegarderEtRafraichir();
@@ -693,6 +709,14 @@ function seConnecter() {
     if (!desc || isNaN(montant) || montant <= 0 || !date) { alert(currentLang === 'ar' ? 'المرجو إدخال معلومات صحيحة' : 'Veuillez remplir les champs correctement.'); return; }
 
     userData.epargne.push({ id: Date.now(), desc, montant, date });
+    db.collection("transaction").add({
+    id: Date.now(),
+    type: type,
+    desc: desc,
+    montant: montant,
+    date: date
+});
+    
     document.getElementById('epDesc').value = '';
     document.getElementById('epMontant').value = '';
     sauvegarderEtRafraichir();
